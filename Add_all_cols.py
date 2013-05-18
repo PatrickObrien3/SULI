@@ -2,7 +2,7 @@
 """
 Created on Fri Apr  5 13:54:11 2013
 
-@author: ronaldholt
+
 """
 import os
 import sys
