@@ -1,8 +1,11 @@
 
 import os
+import sys
+
+
 for filename in os.listdir("."):
-	if filename.startswith("2KKJ."):
-		os.rename(filename, filename[5:])
+	if filename.startswith(str(sys.argv[1])):
+		os.rename(filename, filename[sys.argv[2]:])
 
 
 exit()
