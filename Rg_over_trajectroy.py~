@@ -31,14 +31,14 @@ FILENAME="2KKJ"
 u =Universe(TOP,DCD)
 # Extract position of N and C terminal can calculate distace, write it to a file along with the radius of gyration (RG)
 
-#f=open(str(FILENAME) +'Rg_data.txt','w')
+f=open(str(FILENAME) +'Rg_data.txt','w')
 
 
-#bb = u.selectAtoms('protein and backbone')  # a selection (a AtomGroup)
-#for ts in u.trajectory:     # iterate through all frames
-#  rgyr = bb.radiusOfGyration()  # method of a AtomGroup; updates with each frame
-#  print >>f, " %d  %f " % (ts.frame,rgyr)
-#f.close()
+bb = u.selectAtoms('protein and backbone')  # a selection (a AtomGroup)
+for ts in u.trajectory:     # iterate through all frames
+  rgyr = bb.radiusOfGyration()  # method of a AtomGroup; updates with each frame
+  print >>f, " %d  %f " % (ts.frame,rgyr)
+f.close()
 #Extract distance of N to C terminal and RG overtrajectory
          
 x,y= np.loadtxt(str(FILENAME)+'Rg_data.txt', usecols=(0,1),unpack=True)

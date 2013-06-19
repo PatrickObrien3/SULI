@@ -1,0 +1,6 @@
+for i in 2KKJ.*
+do
+mv $i $i.pdb
+done
+
+

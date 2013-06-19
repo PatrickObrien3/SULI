@@ -1,0 +1,6 @@
+$AMBERHOME/bin/ptraj 1KBH.top trajin.dcd.pdb
+for i in 1KBH.*
+do
+mv $i $i.pdb
+done
+python2.7 ~/Documents/Cryson_script.py

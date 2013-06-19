@@ -1,0 +1,9 @@
+import numpy as np
+import pylab as pl
+import matplotlib as plt
+
+x,y=np.loadtxt("out.txt", usecols=(0,1), unpack=True)
+print 'max', y.max()
+print 'min', y.min()
+print 'std', y.std()
+print 'mean',y.mean()

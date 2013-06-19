@@ -1,0 +1,55 @@
+#!/bin/csh
+
+source /home/software/intel/composerxe-2011.4.191/bin/compilervars.csh intel64
+source /home/software/intel/composerxe-2011.4.191/bin/compilervars.csh intel64
+
+# This directory and basename needs to be set by user
+
+#set MDIR=/home/pratul/DHFR-2ZZA/Equil
+set MDIR=/home/jms/1JJS_best/1
+set TYP=1JJS1
+
+# No further editing needed below this line
+
+set PMEMD='/home/software/mpich/bin/mpirun -np 8 /home/software/bin/pmemd.MPI -O'
+set PREV=srt
+
+set DPRE=srt
+
+foreach RUN (min1 min2 min3 min4 md1 md2 min11 md11 min12 md12 min13 md13 \
+		min14 md14 min15 md15 md16)
+
+   echo Doing $RUN now
+   echo ==============
+
+       cd $MDIR
+       mkdir $RUN
+       cp files/$RUN.in $RUN
+       cd $RUN
+       ln -s ../$TYP.top .
+       ln -s ../$PREV/$TYP.crd.$PREV .
+
+       if ($RUN == min1 || $RUN == min2 || $RUN == min3 || $RUN == min4) then
+               ln -s ../$PREV/$TYP.crd.$PREV $TYP.crd.rst
+       endif
+
+       if ($RUN == md1 || $RUN == md2 || $RUN == min11) then
+               ln -s ../$PREV/$TYP.crd.$PREV $TYP.crd.rst
+       endif
+
+       if ($RUN == min12 || $RUN == min13 || $RUN == min14 || $RUN == min15 || $RUN == md16) then
+               ln -s ../$DPRE/$TYP.crd.$DPRE $TYP.crd.rst
+       endif
+
+       if ($RUN == md11 || $RUN == md12 || $RUN == md13 || $RUN == md14 || $RUN == md15) then
+               ln -s ../$PREV/$TYP.crd.$PREV $TYP.crd.rst
+       endif
+
+       $PMEMD -i $RUN.in -o $RUN.out \
+          -p $TYP.top -c $TYP.crd.$PREV -r $TYP.crd.$RUN -ref $TYP.crd.rst
+       endif
+
+   set DPRE=$PREV
+   set PREV=$RUN
+end
+

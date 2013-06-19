@@ -1,6 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 import matplotlib.mlab as mlab
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
+figure = Figure()
+canvas = FigureCanvas(figure)
+axes = figure.add_subplot(1, 1, 1, axisbg='black')
+#canvas.print_figure('red-bg.png')
 
 #y = np.loadtxt('outfile.txt')
 x, y = np.loadtxt('out.txt', usecols=(0, 1), unpack=True)
@@ -10,9 +17,9 @@ print 'Mean is %8.4f' %y.mean()
 
 
 
-n, bins, patches = plt.hist(y, 100, normed=False, facecolor='blue', alpha=0.75)
+Y= plt.hist(y, 100, normed=False, facecolor='blue',alpha=0.75)
 
-
+#n, bins, patches
 
 plt.xlabel('Rg')
 plt.ylabel('Count')
@@ -21,4 +28,4 @@ plt.title(r'Histogram of Rg')
 #plt.ylim(0,7000)
 plt.grid(True)
 
-plt.show()
+plt.show(facecolor='black')

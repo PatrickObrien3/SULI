@@ -1,0 +1,22 @@
+
+
+#!/bin/csh
+ptraj 2KKJ01.top << EOF
+trajin remd.Ttraj.283.0
+trajin remd.Ttraj.287.0
+trajin remd.Ttraj.291.0
+trajin remd.Ttraj.294.0
+trajin remd.Ttraj.298.0
+trajin remd.Ttraj.302.0
+trajin remd.Ttraj.306.0
+trajin remd.Ttraj.310.0
+distance 13L_17L :13@CA :17@CA out 13L_17L.out
+distance 13L_30L :13@CA :30@CA out 13L_30L.out
+distance 13L_33L :13@CA :33@CA out 13L_33L.out
+distance 17L_30L :17@CA :30@CA out 17L_30L.out
+distance 17L_33L :17@CA :33@CA out 17L_33L.out
+distance 30L_33L :30@CA :33@CA out 30L_33L.out
+
+
+
+EOF

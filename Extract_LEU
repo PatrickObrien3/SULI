@@ -1,0 +1,6 @@
+mkdir LEU
+for i in *.pdb
+do
+grep LEU $i > LEU_$i.txt
+mv LEU_$i.txt LEU
+done

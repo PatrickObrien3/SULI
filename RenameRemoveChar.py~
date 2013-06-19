@@ -1,8 +1,8 @@
 
 import os
 for filename in os.listdir("."):
-	if filename.startswith("1KHB2."):
-		os.rename(filename, filename[6:]+'.pdb')
+	if filename.startswith("2KKJ."):
+		os.rename(filename, filename[5:] + '.pdb')
 
 
 exit()

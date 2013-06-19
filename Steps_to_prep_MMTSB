@@ -1,0 +1,29 @@
+# separate protein from PDB
+~/Install/mmtsb/perl/convpdb.pl  -chain C 1ZOQ.pdb > C_1ZOQ.pdb
+
+#renumber the residues
+~/Install/mmtsb/perl/convpdb.pl -renumber 8 C_1ZOQ.pdb > C_8_1ZOQ.pdb
+
+#add missing loops 
+~/Install/mmtsb/perl/loopModel.pl -models 200 -loop 1:PNRSISP C_8_1ZOQ.pdb > modeller.scores
+
+# This script is used to add PDB files or SICHO chain files to an ensemble of protein structures.
+~/Install/mmtsb/perl/checkin.pl -dir ens model model.?.pdb model.??.pdb model.???.pdb
+
+#set data items for ensemble structures
+~/Install/mmtsb/perl/setprop.pl -dir ens -f modeller.scores -inx 3 model score
+
+#cluster ensemble structures 
+~/Install/mmtsb/perl/enscluster.pl -kclust -l 1:7 -nolsqfit -radius 3.5 -dir ens model
+
+#rank clusters 
+~/Install/mmtsb/perl/bestcluster.pl -dir ens -prop score model
+
+
+
+~/Install/mmtsb/perl/loopModel.pl -models 200 -loop 55:QPGMQ m.131.pdb > modeller.scores
+~/Install/mmtsb/perl/checkin.pl -dir ens model model.?.pdb model.??.pdb model.???.pdb
+~/Install/mmtsb/perl/setprop.pl -dir ens -f modeller.scores -inx 3 model score
+~/Install/mmtsb/perl/enscluster.pl -kclust -l 55:60 -nolsqfit -radius 3.5 -dir ens model
+~/Install/mmtsb/perl/bestcluster.pl -dir ens -prop score model
+

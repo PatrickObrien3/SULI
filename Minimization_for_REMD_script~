@@ -1,0 +1,6 @@
+mkdir  3/MIN 4/MIN 5/MIN
+
+
+/home/software/bin/sander -O -i equilibrate.mdin -o 3/MIN/min3.out -c 3/1KBH3_ww.crd  -p 3/1KBH3_ww.top -r 3/MIN/min.rst 
+/home/software/bin/sander -O -i equilibrate.mdin -o 4/MIN/min4.out -c 4/1KBH4_ww.crd  -p 4/1KBH4_ww.top -r 4/MIN/min.rst 
+/home/software/bin/sander -O -i equilibrate.mdin -o 5/MIN/min5.out -c 5/1KBH5_ww.crd  -p 5/1KBH5_ww.top -r 5/MIN/min.rst 

@@ -1,0 +1,1 @@
+grep PDB cryson_summary.txt > Rg.txt
