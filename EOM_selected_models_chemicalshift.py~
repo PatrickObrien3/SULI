@@ -9,7 +9,7 @@ for k in range(1,6):
 	pdb,freq=np.loadtxt(filename+str(k)+'/Data/GA001/best_curve001.txt',skiprows=2,usecols=(0,1),dtype=int, unpack=True)
 	os.mkdir(filename+str(k)+'/Data/Selected001')
 	for i in pdb:
-		os.system('cp   'filename+str(k)+'/Data/'+str(i)+'x.pdb   '+filename+str(k)+'/Data/Selected001/')
+		os.system('cp   '+filename+str(k)+'/Data/'+str(i)+'x.pdb   '+filename+str(k)+'/Data/Selected001/')
 		os.chdir(filename+str(k)+'/Data/Selected001/')
 	for i in pdb:
 		os.system('/home/jms/Install/shiftx/./shiftx 1 '+str(i)+'x.pdb  ' +str(i)+'.out')

@@ -1,3 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 
+
+@author:James Pino and Jordan Angel
+
+This script is to prepare files from molecular dynamic simulations to be run 
+using EOM from ATSAS. It takes the results of Cryson and evenly separates the
+results while renumbering the files so the EOM can function properly.
+
+
+"""
+
+
 import numpy as np
 import os
 import sys
