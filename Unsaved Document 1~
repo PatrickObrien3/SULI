@@ -1,0 +1,59 @@
+import numpy as np
+import os
+import sys
+
+
+pdb,freq=np.loadtxt(sys.argv[1],skiprows=2,usecols=(0,1),dtype=int, unpack=True)
+
+os.system('cd   /home/jms/ACTR/EOM/Models_1/Data/')
+os.system('mkdir  /home/jms/ACTR/EOM/Models_1/Data/Selected001')
+for i in pdb:
+	os.system('cp  '+str(i)+'x.pdb   /home/jms/ACTR/EOM/Models_1/Data/Selected001/ ')
+os.system('cd   /home/jms/ACTR/EOM/Models_1/Data/Selected001/ ')
+for i in pdb:
+	os.system('/home/jms/Install/shiftx/./shiftx 1 '+str(i)+'x.pdb  ' +str(i)+'.out')
+	print str(i)
+print 'finished chemical shift'
+for i in pdb:
+	print i
+	os.system(" sed '75,280d' " +str(i)+".out >> "+str(i)+".txt") 
+print 'finished sed'
+s=0
+HA=[]
+Ca=[]
+Res=[]
+C=[]
+for i in pdb:
+	print i
+	if s==0:
+		data=np.genfromtxt(str(i)+ '.txt',missing_values='*',filling_values=' ',skiprows=2,usecols=(0,2,5,7))
+		Res=np.concatenate((Res,data[:,0]),axis=0)
+		HA=data[:,1]
+		Ca=data[:,2]
+		C=data[:,3]
+		s=s+1
+	else:
+		data=np.loadtxt(str(i)+ '.txt' ,skiprows=2,usecols=(2,5,7))
+		HA=np.column_stack((HA,data[:,0]))
+        Ca=np.column_stack((Ca,data[:,1]))
+        C=np.column_stack((C,data[:,2]))
+
+HA_avg=np.average(HA,axis=1)
+Ca_avg=np.average(Ca,axis=1)
+C_avg=np.average(C,axis=1)
+
+HA_std=np.std(HA,axis=1)
+CA_std=np.std(Ca,axis=1)
+C_std=np.std(C,axis=1)
+
+B_HA=np.column_stack((Res,HA_avg,HA_std))
+B_CA=np.column_stack((Res,Ca_avg,CA_std))
+B_C=np.column_stack((Res,C_avg,C_std))
+
+
+np.savetxt('HA_all.txt',HA)
+np.savetxt('Ca_all.txt',Ca)
+np.savetxt('C_all.txt',C)
+np.savetxt('HA_xyz',B_HA)
+np.savetxt('CA_xyz',B_CA)
+np.savetxt('C_xyz',B_C)
