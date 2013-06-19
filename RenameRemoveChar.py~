@@ -1,8 +1,8 @@
-
+import sys
 import os
 for filename in os.listdir("."):
-	if filename.startswith("2KKJ."):
-		os.rename(filename, filename[5:] + '.pdb')
+	if filename.startswith(sys.argv[1]):
+		os.rename(filename, filename[int(sys.argv[2]:] + '.pdb')
 
 
 exit()
