@@ -4,9 +4,6 @@ Created on
 
 @author:James Pino and Jordan Angel
 
-This script is to prepare files from molecular dynamic simulations to be run 
-using EOM from ATSAS. It takes the results of Cryson and evenly separates the
-results while renumbering the files so the EOM can function properly.
 
 
 """
@@ -18,7 +15,7 @@ import sys
 
 
 filename='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
-for k in range(1,6):
+for k in range(1,11):
 	os.chdir(filename+str(k)+'/Data/')
 	pdb,freq=np.loadtxt(filename+str(k)+'/Data/GA001/best_curve001.txt',skiprows=2,usecols=(0,1),dtype=int, unpack=True)
 	os.mkdir(filename+str(k)+'/Data/Selected001')
@@ -31,7 +28,8 @@ for k in range(1,6):
 	print 'finished chemical shift'
 	for i in pdb:
 		print i
-		os.system(" sed '75,280d' " +str(i)+".out >> "+str(i)+".txt") 
+		#os.system(" sed '75,280d' " +str(i)+".out >> "+str(i)+".txt") #for ACTR
+		os.system(" sed '134,269d' " +str(i)+".out >> "+str(i)+".txt") #for COMPLEX
 	print 'finished sed'
 	s=0
 	HA=[]
