@@ -38,6 +38,10 @@ data2=np.column_stack((I,q2_avg,q2_std))
 np.savetxt('IvsQ1_avg.txt',data1)
 np.savetxt('IvsQ2_avg.txt',data2)
 
+
+fig=plt.figure(figsize=(8,6),dpi=100)
+ax=fig.add_subplot(111)
+
 q_std=q_std/np.max(q_avg[:])
 q_avg=q_avg/np.max(q_avg[:])
 q2_std=q2_std/np.max(q2_avg[:])
@@ -45,6 +49,7 @@ q2_avg=q2_avg/np.max(q2_avg[:])
 plt.errorbar(I,q_avg,yerr=q_std,label='q1')
 plt.errorbar(I,q2_avg,yerr=q2_std,label='q2')
 plt.errorbar(EI,EIQ,yerr=EIQ_err,label='exp')
+ax1.set_axis('log')
 plt.legend(loc=0)
 plt.savefig('IvsQ_Compare.png')
 plt.show()
