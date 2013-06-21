@@ -19,7 +19,6 @@ ha='ha'
 ca='ca'
 c='c'
 
-
 def align(exp,md,name):
 	
 	diff=np.zeros((1,5))

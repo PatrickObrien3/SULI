@@ -4,9 +4,6 @@ Created on
 
 @author:James Pino and Jordan Angel
 
-This script is to prepare files from molecular dynamic simulations to be run 
-using EOM from ATSAS. It takes the results of Cryson and evenly separates the
-results while renumbering the files so the EOM can function properly.
 
 
 """
@@ -18,13 +15,14 @@ import sys
 
 
 filename='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
+run='2'
 for k in range(1,11):
 	os.chdir(filename+str(k)+'/Data/')
-	pdb,freq=np.loadtxt(filename+str(k)+'/Data/GA001/best_curve001.txt',skiprows=2,usecols=(0,1),dtype=int, unpack=True)
-	os.mkdir(filename+str(k)+'/Data/Selected001')
+	pdb,freq=np.loadtxt(filename+str(k)+'/Data/GA00'+str(run)+'/best_curve00'+str(run)+'.txt',skiprows=2,usecols=(0,1),dtype=int, unpack=True)
+	os.mkdir(filename+str(k)+'/Data/Selected00'+str(run))
 	for i in pdb:
-		os.system('cp   '+filename+str(k)+'/Data/'+str(i)+'x.pdb   '+filename+str(k)+'/Data/Selected001/')
-		os.chdir(filename+str(k)+'/Data/Selected001/')
+		os.system('cp   '+filename+str(k)+'/Data/'+str(i)+'x.pdb   '+filename+str(k)+'/Data/Selected00'+str(run)'/')
+		os.chdir(filename+str(k)+'/Data/Selected00'+str(run)+'/')
 	for i in pdb:
 		os.system('/home/jms/Install/shiftx/./shiftx 1 '+str(i)+'x.pdb  ' +str(i)+'.out')
 		print str(i)

@@ -5,11 +5,10 @@ Created on
 @author:JamesPino
 """
 import numpy as np
-import sys
 
 
 f=open('trajin_select_models','w')
-pdb,freq=np.loadtxt(sys.argv[1],skiprows=2,unpack=True)
+pdb,freq=np.loadtxt('/home/jms/1KBH/ANAL/EOM_Complex/Models_1/Data/GA001/best_curve001.txt',skiprows=2,unpack=True)
 
 
 for i in pdb:

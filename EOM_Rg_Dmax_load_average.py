@@ -1,30 +1,38 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-#NAME='ACTR'
-#filename='/home/jms/ACTR/EOM/Models_'
+NAME='ACTR'
+filename='/home/jms/ACTR/EOM/Models_'
 
-NAME='COMPLEX'
-filename='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
+#NAME='COMPLEX'
+#filename='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
 
 
-#experimental data
-#EI,EIQ,EIQ_err=np.loadtxt('/home/jms/eom_actr_ncbd/actr_files/COMPLEX.dat',skiprows=1,unpack=True)
-EI,EIQ,EIQ_err=np.loadtxt('/home/jms/eom_actr_ncbd/complex/icnorm_ncbd_actr_bsub.dat',skiprows=1,unpack=True)
 
 
 EIQ_err=EIQ_err/np.max(EIQ[:])
 EIQ=EIQ/np.max(EIQ[:])
-q=[]
-q2=[]
+DMAX=[]
+Dfreq=[]
+DSfreq=[]
+RG=[]
+Rfreq=[]
+RSfreq=[]
 b=1
-for k in xrange(1,11):
-#	x,y,z=np.loadtxt(filename+str(k)+'/Data/GA001/profiles'+NAME+'001.fit',skiprows=51,usecols=(0,1,2), unpack=True)
-	x,y,z=np.loadtxt(filename+str(k)+'/Data/GA002/profiles'+NAME+'002.fit',skiprows=51,usecols=(0,1,2), unpack=True)	
+for k in xrange(1,6):
+#	x,y,z=np.loadtxt(filename+str(k)+'/Data/GA001/Rg_distr'+NAME+'001.fit',skiprows=51,usecols=(0,1,2), unpack=True)
+	dmax,Freq,Sel=np.loadtxt(filename+str(k)+'/Data/GA001/Size_distr'+NAME+'001.data',skiprows=51,usecols=(0,1,2), unpack=True)	
+	rg,freq,sel=np.loadtxt(filename+str(k)+'/Data/GA001/Rg_distr'+NAME+'001.dat',skiprows=4,usecols=(0,1,2), unpack=True)
+
+
 	if b==1:
-		I=x
-		q=np.append(q,y,axis=1)
-		q2=np.append(q2,z,axis=1)   
+		DMAX=dmax
+		Dfreq=np.append(Freq,y,axis=1)
+		DSfreq=np.append(Sel,z,axis=1)   
+		b=2
+		RG=rg
+		Rfreq=np.append(freq,y,axis=1)
+		RSfreq=np.append(sel,z,axis=1)   
 		b=2
 	else:
 		q=np.column_stack((q,y))

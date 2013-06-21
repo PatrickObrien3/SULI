@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+EXP_HA = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_HA.txt')
+EXP_CA = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_CA.txt')
+EXP_C = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_C.txt')
 
 CA=np.loadtxt('ca_aligned.txt',skiprows=1)
 cc_CA=np.corrcoef(CA[:,1],CA[:,3])
@@ -15,9 +17,6 @@ cc_C=np.corrcoef(C[:,1],C[:,3])
 fig = plt.figure(figsize=(10,6),dpi=300)
 
 
-RES,HA_avg,HA_err=np.loadtxt('HA_xyz',skiprows=26,unpack=True)
-RES,CA_avg,CA_err=np.loadtxt('CA_xyz',skiprows=26,unpack=True)
-RES,C_avg,C_err=np.loadtxt('C_xyz',skiprows=26,unpack=True)
 
 ax1=fig.add_subplot(311)
 ax1.errorbar(HA[:,2],HA[:,3],yerr=HA[:,4],label='HA')
@@ -43,11 +42,10 @@ ax3.plot(C[:,0],C[:,1],'ro',alpha=.5,label='exp C ACTR/NCBD')
 ax3.text(21, 176, r'C', color='k',fontsize=18)
 ax3.text(80, 170, r'Corr.Coeff='+str(cc_C[0,1]), color='k',fontsize=18)
 plt.ylim(168,182)
-
+fig.tight_layout()
 
 fig.legend((A),('MD' ), 'upper left')
 fig.legend((B),('Experimental ACTR/NCBD'), 'upper right')
-fig.tight_layout()
 fig.savefig('Chem_shift.png',dpi=300)
 
 #plt.show()

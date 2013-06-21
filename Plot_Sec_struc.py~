@@ -1,0 +1,12 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+A,B=np.loadtxt('SS_Complex_avg.txt',skiprows=1,usecols=(0,1),unpack=True)
+D,E,F=np.loadtxt('SS_ACTR.out',skiprows=1,usecols=(0,2,4),unpack=True)
+plt.bar(A[:77],B[:77],color='blue',alpha=0.6,label='Complex')
+plt.bar(D,E,color='red',alpha=0.6,label='ACTR')
+plt.xlim=(0.0,77.0)
+plt.grid(True)
+plt.legend(loc=0)
+plt.show()

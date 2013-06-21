@@ -26,9 +26,9 @@ def renumber_for_EOM(working_directory,count_start):
 			j=5001
 		for i in range(k,50001,10):
 			print j
-			os.system('cp    '+str(i)+'.pdb  '+savedir+str(k)+'/p_actr'+str(j)+'x.pdb')
-			os.system('cp    '+str(i)+'x00.int  '+savedir+str(k)+'/p_actr'+str(j)+'x00.int')
-			os.system('cp    '+str(i)+'x00.log  '+savedir+str(k)+'/p_actr'+str(j)+'x00.log')
+			os.system('cp    '+str(i)+'.pdb  '+savedir+str(k)+'/p_actr/'+str(j)+'x.pdb')
+			os.system('cp    '+str(i)+'x00.int  '+savedir+str(k)+'/p_actr/'+str(j)+'x00.int')
+			os.system('cp    '+str(i)+'x00.log  '+savedir+str(k)+'/p_actr/'+str(j)+'x00.log')
 			j+=1
 		print 'Completed function run'
 	return j
