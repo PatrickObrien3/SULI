@@ -14,6 +14,8 @@ results while renumbering the files so the EOM can function properly.
 import os
 
 directories=['/home/jms/1KBH/BOTH/p_actr1/', '/home/jms/1KBH/BOTH/p_actr2/']
+
+
 savedir='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
 def renumber_for_EOM(working_directory,count_start):
     os.chdir(str(working_directory))
