@@ -1,15 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+EXP_HA = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_HA.txt')
+EXP_CA = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_CA.txt')
+EXP_C = np.loadtxt('/home/jms/1KBH/BOTH/Chem_Shift/COMPLEX_C.txt')
 
-
-CA=np.loadtxt('ca_aligned.txt',skiprows=1)
+CA=np.loadtxt('ca_aligned.txt')
 cc_CA=np.corrcoef(CA[:,1],CA[:,3])
 
-HA=np.loadtxt('ha_aligned.txt',skiprows=1)
+HA=np.loadtxt('ha_aligned.txt')
 cc_HA=np.corrcoef(HA[:,1],HA[:,3])
 
-C=np.loadtxt('c_aligned.txt',skiprows=1)
+C=np.loadtxt('c_aligned.txt')
 cc_C=np.corrcoef(C[:,1],C[:,3])
 
 fig = plt.figure(figsize=(10,6),dpi=300)

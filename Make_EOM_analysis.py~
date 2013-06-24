@@ -1,0 +1,42 @@
+BASE_1='/home/jms/1KBH/ANAL/EOM_Complex/Models_'
+LIST_1='1','2','3','4','5','6','7','8','9','10'
+TOP_1='_ww.top'
+DCD_1='_1us.dcd'
+F=open('EOM_analysis_complex.sh','w')
+
+BASE_2='/home/jms/1JJS/1JJS_SAMMY/'
+LIST_2='1JJS1','1JJS2','1JJS3'
+TOP_2='_ww.prmtop'
+DCD_2='.dcd'
+G=open('EOM_analysis_actr.sh','w')
+
+for filename in LIST_1:
+	print>>F, "cd",BASE_1+filename+'Data/Selected00'+str(run)
+	print>>F, "python2.7 ~/Projects/SULI/", filename+TOP_1, filename+DCD_1, filename
+	print>>F, "echo 'Dihedral Done' "
+	
+	print>>F,"python2.7 ~/Documents/QAA.py", filename+TOP_1, filename+DCD_1, filename
+	print>>F," echo 'QAA Done' "
+		
+	print>>F,"cd Chem_shift"
+	print>>F, "python2.7 ~/Documents/Plot_Chemshift_nice.py", filename
+	print>>F, "echo 'Chemical shift done' "
+	
+	print>>F,"cd ../Cryson"
+	print>>F,"python2.7 ~/Documents/IvsQ_Historgram_plot.py", filename
+
+
+for filename in LIST_2:
+	print>>G, "cd",BASE_2+filename
+	print>>G, "python2.7 ~/Documents/MDA_Dihed.py", filename+TOP_2, filename+DCD_2, filename
+	print>>G, "echo 'Dihedral Done' "
+	
+	print>>G,"python2.7 ~/Documents/QAA.py", filename+TOP_2, filename+DCD_2, filename
+	print>>G," echo 'QAA Done' "
+		
+	print>>G,"cd Chem_shift"
+	print>>G, "python2.7 ~/Documents/Plot_Chemshift_nice.py", filename
+	print>>G, "echo 'Chemical shift done' "
+	
+	print>>G,"cd ../Cryson"
+	print>>G,"python2.7 ~/Documents/IvsQ_Historgram_plot.py", filename
