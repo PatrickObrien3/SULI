@@ -9,8 +9,8 @@ Created on
 5. Run  shiftx on pdbs
 6. Extract all C Calpha and Halpha from out files
 7. Make EOM analysis folders where you split u the trajectorys over 10 sample
-of 10,000 out. ln pdb files, log files, and .int files from cryson 
-8. Make onefile2.l86 list of all intensity and gaj0e.l86 for all log files
+of 10,000 out. links pdb files, log files, and .int files from cryson 
+8. Make onefile2.l86 list of all intensity and gajoe.l86 for all log files
 8.Run EOM on pdbs using basic parameters
 9. Move all selected files from GA00*/best_curve00*.txt file, this will
 make new directoy with only select models which you can look at the

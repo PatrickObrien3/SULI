@@ -7,8 +7,8 @@ distances = (13, 17, 33, 43) #interesting ones from arvinf
 
 n=0
 fig=plt.figure(figsize=(12,9))
-root='/home/jms/1JJS/ANAL/All/'
-
+#root='/home/jms/1JJS/ANAL/All/'
+root='/home/jms/2KKJ/All/'
 x,r12=np.loadtxt(str(root)+'13_17.out',unpack=True)
 x,r13=np.loadtxt(str(root)+'13_33.out',unpack=True)
 x,r14=np.loadtxt(str(root)+'13_43.out',unpack=True)
@@ -31,3 +31,4 @@ A4,B4,C4=calc_angle(r34,r23,r24)
 rB1=90-B1
 rB2=90-B2
 angle1=180-rB1-rB2
+plt.plot(x,angle1
