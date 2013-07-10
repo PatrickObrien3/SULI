@@ -1,56 +1,71 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jun 28 09:36:13 2013
+
+@author: jms
+"""
+
 import numpy as np
-import os, sys
 
-r='/home/jms/2KKJ/'
-a='/Chemical_Shift/TXT/'
-directory_list=str(r)+'1'+str(1),str(r)+'2'
-HA=[]
-Ca=[]
-Res=[]
-C=[]
-s=0
+CA1=np.loadtxt('/home/jms/2KKJ/1/Chemical_Shift/CA_xyz')
+HA1=np.loadtxt('/home/jms/2KKJ/1/Chemical_Shift/HA_xyz')
+C1=np.loadtxt('/home/jms/2KKJ/1/Chemical_Shift/C_xyz')
 
+CA2=np.loadtxt('/home/jms/2KKJ/2/Chemical_Shift/CA_xyz')
+HA2=np.loadtxt('/home/jms/2KKJ/2/Chemical_Shift/HA_xyz')
+C2=np.loadtxt('/home/jms/2KKJ/2/Chemical_Shift/C_xyz')
 
-for i in directory_list:
-    os.chdir(str(r)+str(i)+str(a))
-    os.system('rm list')
-    os.system('ls -1 *.txt >> list')
-    data_list=np.loadtxt('list',dtype=str)
-    for i in data_list:
-        if i.endswith('.txt'):
-            print i
-          
-            if s==0:
-            
-                data=np.loadtxt(i,skiprows=2,comments='*',usecols=(0,2,5,7),)
-                Res=np.concatenate((Res,data[:,0]),axis=0)
-                HA=data[:,1]
-                Ca=data[:,2]
-                C=data[:,3]
-                s=s+1
-            else:
-                data=np.loadtxt(i,skiprows=2,comments='*',usecols=(2,5,7),)
-                HA=np.column_stack((HA,data[:,0]))
-                Ca=np.column_stack((Ca,data[:,1]))
-                C=np.column_stack((C,data[:,2]))
+CA3=np.loadtxt('/home/jms/2KKJ/3/Chemical_Shift/CA_xyz')
+HA3=np.loadtxt('/home/jms/2KKJ/3/Chemical_Shift/HA_xyz')
+C3=np.loadtxt('/home/jms/2KKJ/3/Chemical_Shift/C_xyz')
 
-HA_avg=np.average(HA,axis=1)
-Ca_avg=np.average(Ca,axis=1)
-C_avg=np.average(C,axis=1)
+CA4=np.loadtxt('/home/jms/2KKJ/4/Chemical_Shift/CA_xyz')
+HA4=np.loadtxt('/home/jms/2KKJ/4/Chemical_Shift/HA_xyz')
+C4=np.loadtxt('/home/jms/2KKJ/4/Chemical_Shift/C_xyz')
 
-HA_std=np.std(HA,axis=1)
-CA_std=np.std(Ca,axis=1)
-C_std=np.std(C,axis=1)
+CA5=np.loadtxt('/home/jms/2KKJ/5/Chemical_Shift/CA_xyz')
+HA5=np.loadtxt('/home/jms/2KKJ/5/Chemical_Shift/HA_xyz')
+C5=np.loadtxt('/home/jms/2KKJ/5/Chemical_Shift/C_xyz')
 
-B_HA=np.column_stack((Res,HA_avg,HA_std))
-B_CA=np.column_stack((Res,Ca_avg,CA_std))
-B_C=np.column_stack((Res,C_avg,C_std))
+CA6=np.loadtxt('/home/jms/2KKJ/6/Chemical_Shift/CA_xyz')
+HA6=np.loadtxt('/home/jms/2KKJ/6/Chemical_Shift/HA_xyz')
+C6=np.loadtxt('/home/jms/2KKJ/6/Chemical_Shift/C_xyz')
+
+CA7=np.loadtxt('/home/jms/2KKJ/7/Chemical_Shift/CA_xyz')
+HA7=np.loadtxt('/home/jms/2KKJ/7/Chemical_Shift/HA_xyz')
+C7=np.loadtxt('/home/jms/2KKJ/7/Chemical_Shift/C_xyz')
+
+CA8=np.loadtxt('/home/jms/2KKJ/8/Chemical_Shift/CA_xyz')
+HA8=np.loadtxt('/home/jms/2KKJ/8/Chemical_Shift/HA_xyz')
+C8=np.loadtxt('/home/jms/2KKJ/8/Chemical_Shift/C_xyz')
+
+CA9=np.loadtxt('/home/jms/2KKJ/9/Chemical_Shift/CA_xyz')
+HA9=np.loadtxt('/home/jms/2KKJ/9/Chemical_Shift/HA_xyz')
+C9=np.loadtxt('/home/jms/2KKJ/9/Chemical_Shift/C_xyz')
+
+CA10=np.loadtxt('/home/jms/2KKJ/10/Chemical_Shift/CA_xyz')
+HA10=np.loadtxt('/home/jms/2KKJ/10/Chemical_Shift/HA_xyz')
+C10=np.loadtxt('/home/jms/2KKJ/10/Chemical_Shift/C_xyz')
 
 
-np.savetxt(str(r)+'HA_all.txt',HA)
-np.savetxt(str(r)+'Ca_all.txt',Ca)
-np.savetxt(str(r)+'C_all.txt',C)
-np.savetxt(str(r)+'HA_xyz',B_HA)
-np.savetxt(str(r)+'CA_xyz',B_CA)
-np.savetxt(str(r)+'C_xyz',B_C)
-  
+
+ca=np.column_stack((CA1[:,1],CA2[:,1],CA3[:,1],CA4[:,1],CA5[:,1],CA6[:,1],CA7[:,1],CA8[:,1],CA9[:,1],CA10[:,1])  )
+ha=np.column_stack((HA1[:,1],HA2[:,1],HA3[:,1],HA4[:,1],HA5[:,1],HA6[:,1],HA7[:,1],HA8[:,1],HA9[:,1],HA10[:,1]   ))
+c=np.column_stack((C1[:,1],C2[:,1],C3[:,1],C3[:,1],C4[:,1],C5[:,1],C6[:,1],C7[:,1],C8[:,1],C9[:,1],C10[:,1]))
+
+
+ca_avg=np.average(ca,axis=1)
+ha_avg=np.average(ha,axis=1)
+c_avg=np.average(c,axis=1)
+
+ca_std=np.sqrt((  CA1[:,2]**2 +CA2[:,2]**2 +CA3[:,2]**2  +CA4[:,2]**2 +  CA5[:,2]**2+CA6[:,2]**2+CA7[:,2]**2+CA8[:,2]**2+CA9[:,2]**2+CA10[:,2]**2)/10)
+c_std=np.sqrt((   C1[:,2]**2  +C2[:,2]**2  +C3[:,2]**2  +C4[:,2]**2   +  C5[:,2]**2+C6[:,2]**2+C7[:,2]**2+C8[:,2]**2+C9[:,2]**2+C10[:,2]**2)/10)
+ha_std=np.sqrt((  HA1[:,2]**2 +HA2[:,2]**2 +HA3[:,2]**2 +HA4[:,2]**2  +  HA5[:,2]**2+HA6[:,2]**2+HA7[:,2]**2+HA8[:,2]**2+HA9[:,2]**2+HA10[:,2]**2)/10)
+
+CA=np.column_stack((CA1[:,0],ca_avg,ca_std))
+HA=np.column_stack((HA1[:,0],ha_avg,ha_std))
+C=np.column_stack((C1[:,0],c_avg,c_std))
+
+np.savetxt('CA_xyz_all_1JJS.txt',CA)
+np.savetxt('HA_xyz_all_1JJS.txt',HA)
+np.savetxt('C_xyz_all_1JJS.txt',C)
