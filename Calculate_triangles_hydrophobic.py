@@ -31,4 +31,5 @@ A4,B4,C4=calc_angle(r34,r23,r24)
 rB1=90-B1
 rB2=90-B2
 angle1=180-rB1-rB2
-plt.plot(x,angle1
+plt.savefig('Distance_of_interesting_residue.png',dpi=300)
+plt.plot(x,angle1)

@@ -34,7 +34,7 @@ print t
 np.savetxt('All_IvsQ.csv',t, delimiter=',',fmt='%10.5f')
 
 #np.savetxt('IvsQ_all',a)
-q=[]
+q=x
 for i in range(1,len(t)-1):
                r=np.average(a[str(i),:])
                Q=np.hstack((q,r))

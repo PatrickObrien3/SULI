@@ -1,3 +1,3 @@
-f=open('shift_x','w')
+import os
 for i in range(1,50001):
-    print>>f, '/home/rarvind/Install/shiftx/./shiftx','1', str(i)+'.pdb', str(i)+'.out'
+   os.system('/home/jms/Install/shiftx/./shiftx  1 '+str(i)+'x.pdb '+str(i)+'.out')
