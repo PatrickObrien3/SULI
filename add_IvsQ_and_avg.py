@@ -15,7 +15,7 @@ q=[]
 
 b=1
 
-for i in range(1,100001):
+for i in range(1,50001):
     print "loaded", i
     x,y=np.loadtxt(str(i)+'00.int', skiprows=1, usecols=(0,1), unpack=True)
     if b==1:

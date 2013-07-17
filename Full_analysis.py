@@ -26,14 +26,17 @@ import os
 
 
 number=50 #number for sample
-List=['1JJS1','1JJS2','1JJS3']
+#List=['1JJS1','1JJS2','1JJS3']
 #List=['1JJS3','1JJS2']
 #List=['ACTR1','ACTR2']
-#List=['1KBH3','1KBH4']
+List=['1KBH3']#,'1KBH4']
 for i in List:
-    os.chdir('/home/jms/'+str(i[:4])+'/'+str(i[-1])+'/ANAL/') #change to directory where DCD files are
+    os.chdir('/home/jms/Best_1KBH/3/ANAL/')
+    #os.chdir('/home/jms/'+str(i[:4])+'/'+str(i[-1])+'/ANAL/') #change to directory where DCD files are
     os.system('ptraj '+str(i)+'_ww.prmtop trajin.analysis ') #produce the PDB files from DCD
     os.system('python ~/Projects/SULI/RenameRemoveChar.py  x 2  ') #rename the PDB files
+    os.system('mv *x.pdb /home/jms/'+str(i[:4])+'/'+str(i[-1])+'/ANAL/Cryson/')
+    os.chdir('/home/jms/'+str(i[:4])+'/'+str(i[-1])+'/ANAL/Cryson/')
     os.system('python ~/Projects/SULI/Cryson_script.py ') #run cryson on the PDB files
     os.system('python ~/Projects/SULI/Chem_shiftx.py ') #run chemical shift on all
     os.system('python ~/Projects/SULI/sed.py ' +str(i[:4]))#sed all chemical shift files

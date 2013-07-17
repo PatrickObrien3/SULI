@@ -25,26 +25,26 @@ for i in distances:
                 
 F.close()
 os.system('ptraj  '+str(sys.argv[1])+'.prmtop   trajin_hydrophobic_distance')
+
+
 """
-
-
 n=0
 fig=plt.figure(figsize=(12,9))
 for i in distances:
     for j in distances:
         if i<j:
-            n=1+n
-            plt.subplot(3,2,n)
+            #n=1+n
+            #plt.subplot(3,2,n)
             x,y=np.loadtxt(str(i)+'_'+str(j)+'.out',unpack=True)
-            plt.plot(x,y,label=str(i)+'_'+str(j))
-            plt.legend(loc=0)
+            #plt.plot(x,y,label=str(i)+'_'+str(j))
+            #plt.legend(loc=0)
             n=n+1
             plt.subplot(3,2,n)
             plt.hist(y,100,label=str(i)+'_'+str(j))#, orientation='horizontal')
             plt.legend(loc=0)
         else:
             continue
-
+plt.legend(loc=0)
 fig.tight_layout()
-plt.savefig('Hydro_distance.png',dpi=300,bbox_inches='tight')
+plt.savefig('Hydro_distance.png',dpi=150,bbox_inches='tight')
 plt.show()
