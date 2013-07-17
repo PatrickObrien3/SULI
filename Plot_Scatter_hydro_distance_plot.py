@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jul 15 10:43:36 2013
+Created on Fri Jul 12 10:55:11 2013
 
 @author: jms
 """
@@ -29,18 +29,12 @@ for i in distances:
             x,y=np.loadtxt(str(i)+'_'+str(j)+'.out',unpack=True)
             n=n+1
             plt.subplot(3,2,n)
-            weights = np.ones_like(y)/len(y)
-            plt.hist(y, 75,weights=weights,label=str(i)+'-'+str(j))
-            #plt.hist(y,100,label=str(i)+'-'+str(j))#, orientation='horizontal')
+            plt.hist(y,100,label=str(i)+'_'+str(j))#, orientation='horizontal')
             plt.legend(loc=0)
         else:
             continue
 plt.legend(loc=0)
-<<<<<<< HEAD
-
-=======
 fig.tight_layout()
->>>>>>> 086d1d83b02725d861f5eb966fcc8dc37d7612c1
 plt.savefig('Hydro_distance.png',dpi=150,bbox_inches='tight')
 #plt.show()
 
@@ -50,26 +44,19 @@ def plot_3d_scatter(x,y,z,label1,label2,label3,number):
     P=ax1.scatter(x,y,z,c=ENERGY,cmap=colormap)
     cbar = fig.colorbar(P,ticks=[-3,0,3])
     cbar.ax.set_yticklabels(['<-3','0','>3'])
-    ax1.set_xlabel(str(label1))
-    ax1.set_ylabel(str(label2))
-    ax1.set_zlabel(str(label3))
     ax2=fig.add_subplot(222)
     P=ax2.scatter(x,y,alpha=.5,label=str(label1)+' vs '+str(label2),c=ENERGY,cmap=colormap)
     cbar = fig.colorbar(P,ticks=[-3,0,3])
     cbar.ax.set_yticklabels(['<-3','0','>3'])
     plt.xlim(x.min(),x.max())
     plt.ylim(y.min(),y.max())
-    ax2.set_xlabel(str(label1))
-    ax2.set_ylabel(str(label2))
     plt.legend(loc=0)
     ax3=fig.add_subplot(223)
-    P=plt.scatter(y,z,alpha=.5,label=str(label2)+' vs '+str(label3),c=ENERGY,cmap=colormap)
+    P=plt.scatter(x,z,alpha=.5,label=str(label1)+' vs '+str(label3),c=ENERGY,cmap=colormap)
     cbar = fig.colorbar(P,ticks=[-3,0,3])
     cbar.ax.set_yticklabels(['<-3','0','>3'])
-    plt.xlim(y.min(),y.max())
+    plt.xlim(x.min(),x.max())
     plt.ylim(z.min(),z.max())    
-    ax3.set_xlabel(str(label2))
-    ax3.set_ylabel(str(label3))
     plt.legend(loc=0)
     ax4=fig.add_subplot(224)
     P=plt.scatter(x,z,alpha=.5,label=str(label1)+' vs '+str(label3),c=ENERGY,cmap=colormap)
@@ -77,22 +64,9 @@ def plot_3d_scatter(x,y,z,label1,label2,label3,number):
     cbar.ax.set_yticklabels(['<-3','0','>3'])
     plt.xlim(x.min(),x.max())
     plt.ylim(z.min(),z.max())    
-    ax3.set_xlabel(str(label1))
-    ax3.set_ylabel(str(label3))
     plt.legend(loc=0)
-    plt.savefig("Correlation-distance-"+str(number)+".png",dpi=150,bbox_inches='tight')
+    plt.savefig("Correlation_distance_"+str(number)+".png",dpi=150,bbox_inches='tight')
     plt.clf()
-<<<<<<< HEAD
-#plot_3d_scatter(r1,r2,r3,'L13-L17','L13-L33','L13-F43',1)
-#plot_3d_scatter(r1,r3,r4,'L13-L17','L13-F43','L17-L33',2)
-#plot_3d_scatter(r1,r4,r5,'L13-L17','L17-L33','L17-F43',3)
-#plot_3d_scatter(r1,r5,r6,'L13-L17','L17-F43','L17-F43',4)
-#plot_3d_scatter(r2,r3,r4,'L13-L33','L13-F43','L14-L33',5)
-#plot_3d_scatter(r2,r4,r5,'L13-L33','L17-L33','L17-F43',6)
-#plot_3d_scatter(r2,r5,r6,'L13-L33','L17-F43','L33-F43',7)
-#plot_3d_scatter(r3,r4,r5,'L13-F43','L14-L33','L17-F43',8)
-#plot_3d_scatter(r3,r5,r6,'L13-F43','L17-F43','L33-F43',9)
-=======
 plot_3d_scatter(r1,r2,r3,'L13-L17','L13-L33','L13-F43',1)
 plot_3d_scatter(r1,r3,r4,'L13-L17','L13-F43','L17-L33',2)
 plot_3d_scatter(r1,r4,r5,'L13-L17','L17-L33','L17-F43',3)
@@ -102,5 +76,5 @@ plot_3d_scatter(r2,r4,r5,'L13-L33','L17-L33','L17-F43',6)
 plot_3d_scatter(r2,r5,r6,'L13-L33','L17-F43','L33-F43',7)
 plot_3d_scatter(r3,r4,r5,'L13-F43','L14-L33','L17-F43',8)
 plot_3d_scatter(r3,r5,r6,'L13-F43','L17-F43','L33-F43',9)
->>>>>>> 086d1d83b02725d861f5eb966fcc8dc37d7612c1
 plot_3d_scatter(r4,r5,r6,'L14-L33','L17-F43','L33-F43',10)
+
